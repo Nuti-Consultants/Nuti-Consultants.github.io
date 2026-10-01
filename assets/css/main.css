@@ -198,6 +198,9 @@ a:hover { color:var(--accent-hover); }
 
 /* -------------------------------------------------------------- sections -- */
 
+/* the header is sticky, so an anchored section must clear it or its heading
+   lands underneath — 88px is the 69px header plus breathing room */
+.section, .hero { scroll-margin-top: 88px; }
 .section { padding-block:4rem; border-bottom:1px solid var(--border-soft); }
 .section.alt { background:var(--surface-sunk); }
 .section h2 {
