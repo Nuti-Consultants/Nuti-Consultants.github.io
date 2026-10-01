@@ -244,6 +244,26 @@ a:hover { color:var(--accent-hover); }
   text-transform:uppercase; color:var(--text-faint);
 }
 
+/* ---------------------------------------------------------------- tooling -- */
+
+.toolset { display:grid; grid-template-columns:minmax(0,1fr); gap:2.25rem 3.5rem; margin-top:2rem; }
+/* four groups: an even 2x2 rather than a three-up row with one orphan */
+@media (min-width:720px) { .toolset { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+.toolset section { min-width:0; }
+.toolset h3 {
+  margin:0 0 0.9rem; padding-bottom:0.5rem;
+  font-family:var(--font-mono); font-size:0.7rem; letter-spacing:0.09em;
+  text-transform:uppercase; color:var(--text-faint);
+  border-bottom:1px solid var(--border);
+}
+.toolset ul { list-style:none; margin:0; padding:0; }
+.toolset li { margin-bottom:0.85rem; }
+.toolset .t-name {
+  display:block; font-family:var(--font-ui); font-size:0.9375rem;
+  font-weight:600; color:var(--text); letter-spacing:-0.005em;
+}
+.toolset .t-what { display:block; font-size:0.9rem; color:var(--text-faint); line-height:1.5; }
+
 /* ----------------------------------------------------------------- pills -- */
 
 .pill-links { display:flex; flex-wrap:wrap; gap:0.45rem; margin-top:1.1rem; }

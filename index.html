@@ -34,6 +34,7 @@ host.appendChild(b);});})();</script>
           <a href="#services">Services</a>
           <a href="insights.html">Insights</a>
           <a href="#cases">Case Studies</a>
+          <a href="#tooling">Tooling</a>
           <a href="#about">About</a>
           <a href="#activity">Activity</a>
           <a href="#contact">Contact</a>
@@ -243,6 +244,48 @@ host.appendChild(b);});})();</script>
             <p>A published CoreDNS plugin for NAPTR-based load balancing on partner-facing DNS in roaming interconnect, plus a RADIUS-based IMSI routing service with a deep PostgreSQL routing hierarchy and IMEI fraud validation.</p>
             <a class="btn btn-link" href="cases/observability.html">Read the case study</a>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="tooling" class="section">
+      <div class="container">
+        <h2>Tooling we bring with us</h2>
+        <p>Most of the time lost on a telecom engagement goes on finding out what is actually happening. Over the years we have built the instruments for that, and we arrive with them rather than starting from a blank terminal.</p>
+        <div class="toolset">
+          <section>
+            <h3>Diagnostics</h3>
+            <ul>
+              <li><span class="t-name">Packet-capture analysis platform</span><span class="t-what">A full-stack capture and log analysis tool with subscriber-identifier lookup, deployed per site so an engineer can go from &ldquo;a subscriber is complaining&rdquo; to the exact exchange that failed.</span></li>
+              <li><span class="t-name">Protocol payload analyser</span><span class="t-what">Decodes and compares message payloads across a session, for the faults that only appear when two implementations disagree about an optional field.</span></li>
+              <li><span class="t-name">Capture replay</span><span class="t-what">Replays a recorded capture into a live server, so a production fault can be reproduced on demand instead of waited for.</span></li>
+            </ul>
+          </section>
+          <section>
+            <h3>Test and load</h3>
+            <ul>
+              <li><span class="t-name">Traffic generator</span><span class="t-what">Specification-compliant signalling at volume, with the control-plane correlation a real peer expects.</span></li>
+              <li><span class="t-name">Fault-injecting peer simulator</span><span class="t-what">A peer that misbehaves deliberately &mdash; slow, wrong, or out of sequence &mdash; because those are the failures that actually reach production.</span></li>
+              <li><span class="t-name">Suite-to-verdict harness</span><span class="t-what">Turns a full test run into a single merge-gate answer with the metric tables behind it, so CI can block on it.</span></li>
+            </ul>
+          </section>
+          <section>
+            <h3>Operations</h3>
+            <ul>
+              <li><span class="t-name">Reachability probes</span><span class="t-what">Launch, ping, terminate &mdash; an end-to-end check that a subscriber session can actually be established, not just that a port answers.</span></li>
+              <li><span class="t-name">Fleet audit</span><span class="t-what">Sweeps every site and reports what differs from what was declared, which is usually the first question after an incident.</span></li>
+              <li><span class="t-name">Live topology diagrams</span><span class="t-what">Network diagrams generated from the cloud provider&rsquo;s own API rather than drawn by hand, so they are right on the day you need them.</span></li>
+              <li><span class="t-name">Config translation</span><span class="t-what">Converts a vendor&rsquo;s configuration export into the commands that produce it, and back, so changes can be reviewed as text.</span></li>
+            </ul>
+          </section>
+          <section>
+            <h3>Platform and exporters</h3>
+            <ul>
+              <li><span class="t-name">Cluster and database exporters</span><span class="t-what">Prometheus exporters for Kubernetes estates and for metrics that only exist as SQL queries.</span></li>
+              <li><span class="t-name">Address-map service</span><span class="t-what">Keeps track of which workload holds which address across a cluster &mdash; unremarkable until you are tracing a packet.</span></li>
+              <li><span class="t-name">Latency helpers</span><span class="t-what">CPU pinning and placement tooling for workloads where a scheduling decision is visible as jitter.</span></li>
+            </ul>
+          </section>
         </div>
       </div>
     </section>
