@@ -4,27 +4,82 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Kubernetes at Scale — Nuti Consultants</title>
+    <meta name="description" content="Running stateful telecom network functions on Kubernetes, and building the install and upgrade tooling that makes a multi-site estate repeatable instead of heroic." />
     <link rel="stylesheet" href="../assets/css/main.css" />
+      <script>(function(){
+var D=document.documentElement;
+try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')D.setAttribute('data-theme',t);}catch(e){}
+function cur(){var a=D.getAttribute('data-theme');if(a)return a;
+return window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}
+document.addEventListener('DOMContentLoaded',function(){
+var host=document.querySelector('.header-inner')||document.querySelector('#sidebar .inner')
+||document.querySelector('#header nav.links')||document.querySelector('#header');
+if(!host||host.querySelector('.theme-toggle'))return;
+var b=document.createElement('button');
+b.type='button';b.className='theme-toggle';
+b.innerHTML='<svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z"/></svg>'
++'<svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>';
+function sync(){var c=cur();b.setAttribute('aria-label',c==='dark'?'Switch to light theme':'Switch to dark theme');
+b.setAttribute('title',b.getAttribute('aria-label'));}
+sync();
+b.addEventListener('click',function(){var n=cur()==='dark'?'light':'dark';
+D.setAttribute('data-theme',n);try{localStorage.setItem('theme',n);}catch(e){}sync();});
+host.appendChild(b);});})();</script>
   </head>
   <body>
     <header class="site-header"><div class="container header-inner"><a class="brand" href="../"><img src="../assets/images/logo.png" alt="Nuti Consultants" /><span>Nuti Consultants</span></a></div></header>
     <main>
       <section class="case-hero"><div class="container">
-        <a class="back" href="../#cases">← All case studies</a>
+        <a class="back" href="../#cases">&larr; All case studies</a>
         <h1>Kubernetes at Scale</h1>
-        <p>Containerizing critical workloads and streamlining deployments to cut lead time by ~80%.</p>
+        <p>Running stateful telecom network functions on Kubernetes, and building the install and upgrade tooling that makes a multi-site estate repeatable instead of heroic.</p>
+        <dl class="case-metrics">
+          <div><dt>Network-function tool</dt><dd>219 commits</dd></div>
+          <div><dt>Infrastructure tool</dt><dd>123 commits</dd></div>
+          <div><dt>Code written</dt><dd>+93,000 lines</dd></div>
+          <div><dt>Scope</dt><dd>30+ network functions</dd></div>
+        </dl>
       </div></section>
       <section class="section"><div class="container">
-        <h2>Highlights</h2>
-        <ul>
-          <li>Multi‑cluster patterns and safe delivery for stateful & latency‑sensitive services.</li>
-          <li>GitOps and CI automation to reduce manual touchpoints and drift.</li>
-          <li>Capacity planning and cost‑aware reliability improvements.</li>
-        </ul>
-        <p>Related reading: browse Containers and DevOps posts in our insights.</p>
+        <div class="case-body">
+          <h2>The problem</h2>
+          <p>Stateful network functions are not web services. They hold sessions, they peer with external networks, they expect particular kernel and network configuration, and they cannot be drained casually. Vendor 5G core installs compound this: the documented procedure is a sequence of manual steps, it differs per site, and nothing records what was actually done &mdash; so a year later nobody can say why two sites differ.</p>
+
+          <h2>What we built</h2>
+          <h3>Delivery for stateful workloads</h3>
+          <p>Overlay-based delivery with Helm and Kustomize for more than thirty stateful network functions, secrets held in a vault rather than in the manifests, and promotion between development and production environments as a controlled step rather than a copied directory.</p>
+
+          <h3>An install and lifecycle tool</h3>
+          <p>A command-line tool that installs and upgrades vendor network functions from a declared description of each site. Its most useful feature is the least glamorous one: a <strong>survey mode</strong> that performs a full dry run and reports <em>every</em> blocker it finds, rather than stopping at the first. An operator gets one list to resolve instead of discovering problems one at a time across an evening.</p>
+          <ul>
+            <li><strong>Day-1 gates</strong> that verify the preconditions a vendor install assumes but does not check.</li>
+            <li><strong>Site-parameterised builds</strong>, so a second site is a declaration rather than a fork.</li>
+            <li><strong>Controlled chart cutovers</strong>, one function at a time, with the previous revision recoverable.</li>
+          </ul>
+
+          <h3>A second tool for the infrastructure beneath</h3>
+          <p>The cloud infrastructure under those functions needs the same discipline. A companion tool manages the estate with <strong>ownership guards</strong> (so a stack nobody owns cannot be modified by accident), <strong>change-set based imports</strong> for resources created by hand, and <strong>drift detection with an evidence loop</strong> &mdash; an inconclusive detection discards its own result rather than reporting a false clean.</p>
+
+          <h3>What the gates actually check</h3>
+          <p>A vendor install procedure assumes a great deal about the state it is dropped into. The gates make those assumptions explicit and testable &mdash; and most of the engineering effort went into the cases where the obvious check is the wrong one:</p>
+          <ul>
+            <li>Identity is read from the network function&rsquo;s own identifier, not from the release name it happens to be installed under &mdash; those diverge the moment anything is reinstalled.</li>
+            <li>An existing function at an older software version is the <em>starting point</em> of a re-instantiation, not a reason to stop. Treating it as a blocker is what turns a routine upgrade into a manual one.</li>
+            <li>Dependencies between functions that the documentation leaves implicit are declared, so install order is derived rather than remembered.</li>
+            <li>Post-install verification polls for a healthy result instead of assuming the command&rsquo;s exit code meant anything.</li>
+          </ul>
+
+          <h3>Drift detection that admits when it does not know</h3>
+          <p>Comparing declared infrastructure against live infrastructure is easy to do badly. A transient API error looks identical to &ldquo;no drift&rdquo; unless you design for it. Here the detection runs an evidence loop: transient failures are retried, and any detection that finishes inconclusive <strong>purges its own result</strong> rather than recording a clean state it cannot support. Accepted differences are tracked explicitly and pruned when they retire, so the accepted-drift list stays meaningful instead of becoming a dumping ground.</p>
+
+          <h2>How it holds up</h2>
+          <p>Both tools carry their own libraries and test suites, and both ship with day-2 procedures written for the person on call rather than the person who built them: daily checks, drift sweeps, planned and emergency changes, bringing up a new site, and decommissioning one. The test suite is the larger part of the second tool, which is the right ratio for software whose failure mode is a change applied to live infrastructure.</p>
+          <p class="case-note">Details here are generalised: specifics of any operator, partner or site are deliberately omitted.</p>
+          <p style="margin-top:1.6rem">Related reading: <a href="../insights.html">browse the containers notes</a>.</p>
+        </div>
       </div></section>
     </main>
-    <footer class="site-footer"><div class="container"><p>© <span id="year"></span> Nuti Consultants</p></div></footer>
+    <footer class="site-footer"><div class="container"><p>&copy; <span id="year"></span> Nuti Consultants</p></div></footer>
     <script src="../assets/js/main.js"></script>
   </body>
-  </html>
+</html>

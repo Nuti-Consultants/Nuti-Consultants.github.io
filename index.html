@@ -6,6 +6,25 @@
     <title>Nuti Consultants — Telecom & Cloud-Native Infrastructure</title>
     <meta name="description" content="Consulting in telecom infrastructure, Kubernetes, AWS, observability, and automation." />
     <link rel="stylesheet" href="assets/css/main.css" />
+      <script>(function(){
+var D=document.documentElement;
+try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')D.setAttribute('data-theme',t);}catch(e){}
+function cur(){var a=D.getAttribute('data-theme');if(a)return a;
+return window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}
+document.addEventListener('DOMContentLoaded',function(){
+var host=document.querySelector('.header-inner')||document.querySelector('#sidebar .inner')
+||document.querySelector('#header nav.links')||document.querySelector('#header');
+if(!host||host.querySelector('.theme-toggle'))return;
+var b=document.createElement('button');
+b.type='button';b.className='theme-toggle';
+b.innerHTML='<svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z"/></svg>'
++'<svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>';
+function sync(){var c=cur();b.setAttribute('aria-label',c==='dark'?'Switch to light theme':'Switch to dark theme');
+b.setAttribute('title',b.getAttribute('aria-label'));}
+sync();
+b.addEventListener('click',function(){var n=cur()==='dark'?'light':'dark';
+D.setAttribute('data-theme',n);try{localStorage.setItem('theme',n);}catch(e){}sync();});
+host.appendChild(b);});})();</script>
   </head>
   <body>
     <header class="site-header">
@@ -27,9 +46,30 @@
     <main id="home">
       <section class="hero">
         <div class="container">
-          <h1>Telecom & Cloud‑Native Infrastructure Consulting</h1>
-          <p>We design, automate, and operate reliable LTE/5G and cloud platforms — Kubernetes at scale, AWS multi‑region architecture, production observability, and pragmatic automation.</p>
-          <div class="hero-cta">
+          <span class="eyebrow">Mobile core &middot; Kubernetes &middot; Carrier interconnect</span>
+        <h1>We build telecom network functions to specification</h1>
+          <p>We build network functions from the specification &mdash; GTP, Diameter, SS7/SIGTRAN, RADIUS &mdash; together with the test suites that prove them and the platform tooling that runs them. Products, not slideware.</p>
+          <div class="sigpath" role="img" aria-label="LTE user-plane path: UE to eNodeB over Uu, to Serving Gateway over S1-U, to Packet Gateway over S5/S8, out over SGi.">
+          <svg viewBox="0 0 500 64" xmlns="http://www.w3.org/2000/svg">
+            <line class="link" x1="82" y1="27" x2="146" y2="27"/>
+            <line class="link" x1="222" y1="27" x2="286" y2="27"/>
+            <line class="link" x1="362" y1="27" x2="418" y2="27"/>
+            <rect class="node" x="6" y="14" width="76" height="26" rx="3"/>
+            <rect class="node" x="146" y="14" width="76" height="26" rx="3"/>
+            <rect class="node" x="286" y="14" width="76" height="26" rx="3"/>
+            <rect class="node" x="418" y="14" width="76" height="26" rx="3"/>
+            <text class="label" x="44" y="31" text-anchor="middle">UE</text>
+            <text class="label" x="184" y="31" text-anchor="middle">eNodeB</text>
+            <text class="label" x="324" y="31" text-anchor="middle">SGW</text>
+            <text class="label" x="456" y="31" text-anchor="middle">PGW</text>
+            <text class="iface" x="114" y="11" text-anchor="middle">Uu</text>
+            <text class="iface" x="254" y="11" text-anchor="middle">S1-U</text>
+            <text class="iface" x="390" y="11" text-anchor="middle">S5/S8</text>
+            <text class="iface" x="456" y="55" text-anchor="middle">SGi &#8594;</text>
+            <circle class="pkt" cx="82" cy="27" r="3"/>
+          </svg>
+        </div>
+        <div class="hero-cta">
             <a class="btn" href="#contact">Start a conversation</a>
             <a class="btn btn-ghost" href="#services">Explore services</a>
           </div>
@@ -37,105 +77,131 @@
       </section>
 
       <section id="services" class="section">
-        <div class="container">
-          <h2>Services</h2>
-          <div class="grid cards">
-            <article class="card">
-              <h3>Infrastructure Architecture</h3>
-              <p>Multi‑region network design, HA patterns, and migration paths bridging on‑prem, telecom, and cloud.</p>
-              <ul>
-                <li>Resilient AWS architectures</li>
-                <li>Traffic routing & BGP/DNS strategy</li>
-                <li>Disaster recovery & SLOs</li>
-              </ul>
-            </article>
-            <article class="card">
-              <h3>Automation & DevOps</h3>
-              <p>Infrastructure as Code and CI/CD that reduce deployment time and eliminate drift.</p>
-              <ul>
-                <li>GitOps workflows & pipelines</li>
-                <li>Idempotent tooling & playbooks</li>
-                <li>Policy & guardrails</li>
-              </ul>
-            </article>
-            <article class="card">
-              <h3>Observability</h3>
-              <p>Prometheus‑first monitoring, actionable alerts, and clear runbooks across platforms and partners.</p>
-              <ul>
-                <li>Metrics, logs, tracing</li>
-                <li>Alert hygiene & ownership</li>
-                <li>Capacity & performance</li>
-              </ul>
-            </article>
-            <article class="card">
-              <h3>Telecom Systems</h3>
-              <p>Design and operation for IMS/VoLTE, Diameter/GTP flows, and partner integration.</p>
-              <ul>
-                <li>Core network components</li>
-                <li>Interconnect & peering</li>
-                <li>Protocol tooling</li>
-              </ul>
-            </article>
-            <article class="card">
-              <h3>Containers & Kubernetes</h3>
-              <p>Day‑2 operations and platform engineering for regulated and low‑latency workloads.</p>
-              <ul>
-                <li>Multi‑cluster patterns</li>
-                <li>Stateful services</li>
-                <li>Cost & reliability</li>
-              </ul>
-            </article>
-            <article class="card">
-              <h3>Security & Compliance</h3>
-              <p>PKI, certificates, secrets, and practical controls that meet audit without slowing delivery.</p>
-              <ul>
-                <li>Certificate lifecycle</li>
-                <li>Secret management</li>
-                <li>Policy as code</li>
-              </ul>
-            </article>
-          </div>
+      <div class="container">
+        <h2>What we build</h2>
+        <p>Standards-based network functions and the tooling around them &mdash; written from specification, tested against it, and operated in production. We work from the 3GPP and IETF documents directly rather than from a vendor&rsquo;s interpretation of them.</p>
+        <div class="grid cards">
+          <article class="card">
+            <span class="glyph"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="9" width="7" height="6" rx="1.5"/><rect x="14" y="9" width="7" height="6" rx="1.5"/><path d="M10 12h4"/><path d="M6.5 9V5.5M17.5 15v3.5"/></svg></span>
+            <h3>Mobile core network functions</h3>
+            <p>Control-plane and user-plane elements for EPC and 5GC, built to specification in Go or C.</p>
+            <ul>
+              <li>GTP-C / GTP-U &mdash; 3GPP TS 29.274, TS 29.281</li>
+              <li>PFCP and the N4 interface &mdash; TS 29.244</li>
+              <li>Session state, HA and failover design</li>
+            </ul>
+          </article>
+          <article class="card">
+            <span class="glyph"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3v18M18 3v18"/><path d="M6 8h12M18 13H6M6 17.5h12"/><path d="M15.5 5.5 18 8l-2.5 2.5M8.5 10.5 6 13l2.5 2.5"/></svg></span>
+            <h3>Signalling &amp; interconnect</h3>
+            <p>SS7 and Diameter elements for roaming and partner interconnect, including the parts vendors leave out.</p>
+            <ul>
+              <li>SS7 / SIGTRAN &mdash; M3UA (RFC 4666), SCCP, TCAP, MAP</li>
+              <li>Diameter routing &mdash; RFC 6733, S6a, IMSI translation</li>
+              <li>RADIUS (RFC 2865) and NAPTR DNS (RFC 3403)</li>
+            </ul>
+          </article>
+          <article class="card">
+            <span class="glyph"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3v6.2L4.6 17A2 2 0 0 0 6.3 20h11.4a2 2 0 0 0 1.7-3L15 9.2V3"/><path d="M8 3h8M7.4 14h9.2"/></svg></span>
+            <h3>Test &amp; conformance tooling</h3>
+            <p>Traffic generators and fault injectors that reproduce real interop failures in a lab, before a partner finds them.</p>
+            <ul>
+              <li>Specification-compliant traffic generation</li>
+              <li>Peer simulators with deliberate fault injection</li>
+              <li>Interop and regression suites in CI</li>
+            </ul>
+          </article>
+          <article class="card">
+            <span class="glyph"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 6.2v7.6L12 18l8-4.2V6.2Z"/><path d="M4 6.2 12 10l8-3.8M12 10v8"/></svg></span>
+            <h3>Platform &amp; lifecycle engineering</h3>
+            <p>Running stateful network functions on Kubernetes, and the install and upgrade tooling that makes it repeatable.</p>
+            <ul>
+              <li>Helm and overlay-based delivery, secrets management</li>
+              <li>Day-1 install gates and day-2 upgrade procedures</li>
+              <li>Infrastructure-as-code with drift detection</li>
+            </ul>
+          </article>
+          <article class="card">
+            <span class="glyph"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18h18"/><path d="M3 14l4-5 3.5 3.5L15 6l3 4.5"/><circle cx="18" cy="10.5" r="1.6"/></svg></span>
+            <h3>Observability for network functions</h3>
+            <p>Instrumentation designed with the protocol in mind, not bolted on afterwards.</p>
+            <ul>
+              <li>In-process metrics, session and cache gauges</li>
+              <li>Protocol-layer active probing</li>
+              <li>Alert hygiene &mdash; fewer alerts that mean more</li>
+            </ul>
+          </article>
+          <article class="card">
+            <span class="glyph"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 2.6 15.4 0 18M12 3c-2.6 2.6-2.6 15.4 0 18"/></svg></span>
+            <h3>Carrier integration</h3>
+            <p>Bringing a new roaming or MVNO partner up, from addressing and peering through to first live traffic.</p>
+            <ul>
+              <li>Interconnect design, BGP peering, IPsec</li>
+              <li>Partner turn-up automation</li>
+              <li>Packet-level fault diagnosis across the path</li>
+            </ul>
+          </article>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section id="cases" class="section alt">
-        <div class="container">
-          <h2>Case Studies</h2>
-          <div class="grid cards">
-            <article class="card">
-              <h3>Observability at Scale</h3>
-              <p>Unified monitoring across regions and partners with alert noise reduced while expanding coverage.</p>
-              <a class="btn btn-link" href="cases/observability.html">Read more →</a>
-            </article>
-            <article class="card">
-              <h3>Telecom Architecture</h3>
-              <p>Multi‑partner routing and high‑availability design for Diameter/SIP gateways and core services.</p>
-              <a class="btn btn-link" href="cases/telecom-architecture.html">Read more →</a>
-            </article>
-            <article class="card">
-              <h3>Kubernetes at Scale</h3>
-              <p>Containerizing critical workloads and streamlining deployments to cut lead time by ~80%.</p>
-              <a class="btn btn-link" href="cases/kubernetes-scale.html">Read more →</a>
-            </article>
-          </div>
+    <section id="cases" class="section alt">
+      <div class="container">
+        <h2>Built from scratch</h2>
+        <p>Capability stated above is capability we have exercised. Each of these was written, not configured &mdash; and each ran in a production carrier network.</p>
+        <div class="grid cards">
+          <article class="card">
+            <span class="metric">Go &middot; 674 source files</span>
+            <h3>Carrier-grade GTP proxy</h3>
+            <p>GTPv1/v2 control and user plane with a multi-tier IMSI/APN/PLMN routing hierarchy, TS 29.274 peer path management with automatic blacklisting, per-peer rate limiting and a zero-allocation hot path. Load-tested past 100,000 concurrent sessions.</p>
+            <a class="btn btn-link" href="cases/telecom-architecture.html">Read the case study</a>
+          </article>
+          <article class="card">
+            <span class="metric">C &middot; on an Osmocom base</span>
+            <h3>SS7 Signalling Transfer Point</h3>
+            <p>A production STP carrying roaming signalling, extended with roaming-partner address hiding, GT pattern routing, MAP/TCAP dialogue correlation and a purpose-built metrics exporter for operator-grade visibility.</p>
+          </article>
+          <article class="card">
+            <span class="metric">Go &middot; 3GPP-compliant</span>
+            <h3>GTP test suite</h3>
+            <p>A traffic generator and a fault-injecting PGW/GGSN simulator built to reproduce production interop failures in a lab, with control-plane correlation and TEID handling that matches real peer behaviour.</p>
+          </article>
+          <article class="card">
+            <span class="metric">C &middot; freeDiameter</span>
+            <h3>Diameter routing agents</h3>
+            <p>Diameter routing with IMSI translation for carrier and MVNO integration, including diagnosis and repair of memory-corruption faults affecting live signalling.</p>
+          </article>
+          <article class="card">
+            <span class="metric">Python &middot; 342 commits &middot; +93k lines</span>
+            <h3>5G core lifecycle tooling</h3>
+            <p>Two tools for a vendor 5G core across multiple sites. One installs and upgrades the network functions &mdash; survey-mode dry runs that report every blocker before install, Day-1 gates, site-parameterised builds (219 commits). The other manages the cloud infrastructure beneath them with ownership guards, change-set imports and drift detection (123 commits). Both carry their own libraries, test suites and day-2 runbooks.</p>
+            <a class="btn btn-link" href="cases/kubernetes-scale.html">Read the case study</a>
+          </article>
+          <article class="card">
+            <span class="metric">Open source</span>
+            <h3>CoreDNS NAPTR plugin</h3>
+            <p>A published CoreDNS plugin for NAPTR-based load balancing on partner-facing DNS in roaming interconnect, plus a RADIUS-based IMSI routing service with a deep PostgreSQL routing hierarchy and IMEI fraud validation.</p>
+            <a class="btn btn-link" href="cases/observability.html">Read the case study</a>
+          </article>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section id="about" class="section">
-        <div class="container">
-          <h2>About</h2>
-          <p>Nuti Consultants focuses on reliable telecom and cloud‑native infrastructure. We bring hands‑on experience across LTE/5G core, network engineering, Kubernetes, AWS, and production observability to deliver practical outcomes.</p>
-          <div class="pill-links">
-            <a class="pill" href="https://github.com/orgs/Nuti-Consultants/repositories" target="_blank" rel="noopener">Org GitHub</a>
-            <a class="pill" href="https://github.com/JagannathS" target="_blank" rel="noopener">GitHub (JagannathS)</a>
-            <a class="pill" href="https://github.com/sjagannath05" target="_blank" rel="noopener">GitHub (sjagannath05)</a>
-            <a class="pill" href="https://www.linkedin.com/in/sjaga/" target="_blank" rel="noopener">LinkedIn</a>
-            <a class="pill" href="https://jagannaths.github.io/" target="_blank" rel="noopener">Homepage</a>
-          </div>
+    <section id="about" class="section">
+      <div class="container">
+        <h2>How we work</h2>
+        <p>We start from the specification. Most interop problems in a carrier network come from two implementations reading the same clause differently, so the first question on any engagement is which document governs, and what it actually says.</p>
+        <p>We prefer to leave a client with something they can operate without us: source they own, tests that prove it, and a runbook written for the person on call at 2am rather than for the person who built it.</p>
+        <p>Engagements run from a short specification review or interop investigation through to building and handing over a complete network function.</p>
+        <div class="pill-links">
+          <a class="pill" href="https://github.com/orgs/Nuti-Consultants/repositories" target="_blank" rel="noopener">Org GitHub</a>
+          <a class="pill" href="https://jagannaths.github.io/" target="_blank" rel="noopener">Engineering notes</a>
+          <a class="pill" href="https://www.linkedin.com/in/sjaga/" target="_blank" rel="noopener">LinkedIn</a>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section id="activity" class="section alt">
+    <section id="activity" class="section alt">
         <div class="container">
           <h2>Open Source Activity</h2>
           <div id="gh-activity">
