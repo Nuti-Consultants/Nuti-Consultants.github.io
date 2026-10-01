@@ -67,3 +67,45 @@ document.addEventListener('DOMContentLoaded', function() {
     })();
   }
 });
+
+/* Hero diagram: show each network path in turn above the static platform band.
+   Auto-advancing content that carries meaning needs a pause control (WCAG 2.2.2),
+   and anyone who has asked for reduced motion gets one complete path, no cycling. */
+(function () {
+  var wrap = document.querySelector('.sigpath');
+  if (!wrap) return;
+  var paths = Array.prototype.slice.call(wrap.querySelectorAll('.sig-path'));
+  var now = wrap.querySelector('.sig-now');
+  var btn = wrap.querySelector('.sig-pause');
+  var desc = document.getElementById('sigDesc');
+  if (!paths.length) return;
+
+  var i = 0, timer = null, paused = false;
+  var reduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function show(n) {
+    paths.forEach(function (p, k) { p.classList.toggle('is-on', k === n); });
+    var p = paths[n];
+    if (now) now.textContent = p.getAttribute('data-name') || '';
+    if (desc) desc.textContent = p.getAttribute('data-desc') || '';
+  }
+  function advance() { i = (i + 1) % paths.length; show(i); }
+  function start() { stop(); timer = setInterval(advance, 6000); }
+  function stop() { if (timer) { clearInterval(timer); timer = null; } }
+
+  show(0);
+  if (reduced) { if (btn) btn.hidden = true; return; }
+  start();
+
+  if (btn) {
+    btn.addEventListener('click', function () {
+      paused = !paused;
+      if (paused) { stop(); btn.textContent = 'Play'; btn.setAttribute('aria-label', 'Resume the diagram'); }
+      else { start(); btn.textContent = 'Pause'; btn.setAttribute('aria-label', 'Pause the diagram'); }
+    });
+  }
+  // don't animate in a background tab
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) stop(); else if (!paused) start();
+  });
+})();

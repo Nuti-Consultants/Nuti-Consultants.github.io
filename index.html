@@ -49,25 +49,85 @@ host.appendChild(b);});})();</script>
           <span class="eyebrow">Mobile core &middot; Kubernetes &middot; Carrier interconnect</span>
         <h1>We build telecom network functions to specification</h1>
           <p>We build network functions from the specification &mdash; GTP, Diameter, SS7/SIGTRAN, RADIUS &mdash; together with the test suites that prove them and the platform tooling that runs them. Products, not slideware.</p>
-          <div class="sigpath" role="img" aria-label="LTE user-plane path: UE to eNodeB over Uu, to Serving Gateway over S1-U, to Packet Gateway over S5/S8, out over SGi.">
-          <svg viewBox="0 0 500 64" xmlns="http://www.w3.org/2000/svg">
-            <line class="link" x1="82" y1="27" x2="146" y2="27"/>
-            <line class="link" x1="222" y1="27" x2="286" y2="27"/>
-            <line class="link" x1="362" y1="27" x2="418" y2="27"/>
-            <rect class="node" x="6" y="14" width="76" height="26" rx="3"/>
-            <rect class="node" x="146" y="14" width="76" height="26" rx="3"/>
-            <rect class="node" x="286" y="14" width="76" height="26" rx="3"/>
-            <rect class="node" x="418" y="14" width="76" height="26" rx="3"/>
-            <text class="label" x="44" y="31" text-anchor="middle">UE</text>
-            <text class="label" x="184" y="31" text-anchor="middle">eNodeB</text>
-            <text class="label" x="324" y="31" text-anchor="middle">SGW</text>
-            <text class="label" x="456" y="31" text-anchor="middle">PGW</text>
-            <text class="iface" x="114" y="11" text-anchor="middle">Uu</text>
-            <text class="iface" x="254" y="11" text-anchor="middle">S1-U</text>
-            <text class="iface" x="390" y="11" text-anchor="middle">S5/S8</text>
-            <text class="iface" x="456" y="55" text-anchor="middle">SGi &#8594;</text>
-            <circle class="pkt" cx="82" cy="27" r="3"/>
+          <div class="sigpath">
+          <svg viewBox="0 0 500 124" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="sigTitle sigDesc">
+            <title id="sigTitle">What we build, and what it runs on</title>
+            <desc id="sigDesc">Four network paths shown in turn &mdash; 4G user plane, 3G packet core, Diameter signalling and SS7 signalling &mdash; above a band showing the container platform the network functions run on.</desc>
+            <g class="sig-path p-4g" data-name="4G user plane" data-desc="LTE user plane: UE to eNodeB over Uu, to Serving Gateway over S1-U, to Packet Gateway over S5/S8, out over SGi.">
+              <line class="link" x1="362" y1="31" x2="418" y2="31"/>
+              <line class="link" x1="222" y1="31" x2="286" y2="31"/>
+              <line class="link" x1="82" y1="31" x2="146" y2="31"/>
+              <rect class="node" x="6" y="18" width="76" height="26" rx="3"/>
+              <text class="label" x="44" y="35" text-anchor="middle">UE</text>
+              <rect class="node" x="146" y="18" width="76" height="26" rx="3"/>
+              <text class="label" x="184" y="35" text-anchor="middle">eNodeB</text>
+              <rect class="node" x="286" y="18" width="76" height="26" rx="3"/>
+              <text class="label" x="324" y="35" text-anchor="middle">SGW</text>
+              <rect class="node" x="418" y="18" width="76" height="26" rx="3"/>
+              <text class="label" x="456" y="35" text-anchor="middle">PGW</text>
+              <text class="iface" x="114" y="14" text-anchor="middle">Uu</text>
+              <text class="iface" x="254" y="14" text-anchor="middle">S1-U</text>
+              <text class="iface" x="390" y="14" text-anchor="middle">S5/S8</text>
+              <text class="iface" x="456" y="58" text-anchor="middle">SGi &#8594;</text>
+              <circle class="pkt" cx="82" cy="31" r="3"/>
+            </g>
+            <g class="sig-path p-3g" data-name="3G packet core" data-desc="3G packet core: UE to Radio Network Controller, to Serving GPRS Support Node over Iu-PS, to Gateway GPRS Support Node over Gn.">
+              <line class="link" x1="362" y1="31" x2="418" y2="31"/>
+              <line class="link" x1="222" y1="31" x2="286" y2="31"/>
+              <line class="link" x1="82" y1="31" x2="146" y2="31"/>
+              <rect class="node" x="6" y="18" width="76" height="26" rx="3"/>
+              <text class="label" x="44" y="35" text-anchor="middle">UE</text>
+              <rect class="node" x="146" y="18" width="76" height="26" rx="3"/>
+              <text class="label" x="184" y="35" text-anchor="middle">RNC</text>
+              <rect class="node" x="286" y="18" width="76" height="26" rx="3"/>
+              <text class="label" x="324" y="35" text-anchor="middle">SGSN</text>
+              <rect class="node" x="418" y="18" width="76" height="26" rx="3"/>
+              <text class="label" x="456" y="35" text-anchor="middle">GGSN</text>
+              <text class="iface" x="114" y="14" text-anchor="middle">Uu</text>
+              <text class="iface" x="254" y="14" text-anchor="middle">Iu-PS</text>
+              <text class="iface" x="390" y="14" text-anchor="middle">Gn</text>
+              <text class="iface" x="456" y="58" text-anchor="middle">Gi &#8594;</text>
+              <circle class="pkt" cx="82" cy="31" r="3"/>
+            </g>
+            <g class="sig-path p-dia" data-name="Diameter signalling" data-desc="Diameter signalling: Mobility Management Entity to Home Subscriber Server over S6a, routed through a Diameter Routing Agent.">
+              <line class="link" x1="288" y1="31" x2="388" y2="31"/>
+              <line class="link" x1="112" y1="31" x2="212" y2="31"/>
+              <rect class="node" x="36" y="18" width="76" height="26" rx="3"/>
+              <text class="label" x="74" y="35" text-anchor="middle">MME</text>
+              <rect class="node" x="212" y="18" width="76" height="26" rx="3"/>
+              <text class="label" x="250" y="35" text-anchor="middle">DRA</text>
+              <rect class="node" x="388" y="18" width="76" height="26" rx="3"/>
+              <text class="label" x="426" y="35" text-anchor="middle">HSS</text>
+              <text class="iface" x="162" y="14" text-anchor="middle">S6a</text>
+              <text class="iface" x="338" y="14" text-anchor="middle">S6a</text>
+              <circle class="pkt" cx="112" cy="31" r="3"/>
+            </g>
+            <g class="sig-path p-ss7" data-name="SS7 signalling" data-desc="SS7 signalling: Mobile Switching Centre to Home Location Register carrying MAP, routed through a Signalling Transfer Point over M3UA.">
+              <line class="link" x1="288" y1="31" x2="388" y2="31"/>
+              <line class="link" x1="112" y1="31" x2="212" y2="31"/>
+              <rect class="node" x="36" y="18" width="76" height="26" rx="3"/>
+              <text class="label" x="74" y="35" text-anchor="middle">MSC</text>
+              <rect class="node" x="212" y="18" width="76" height="26" rx="3"/>
+              <text class="label" x="250" y="35" text-anchor="middle">STP</text>
+              <rect class="node" x="388" y="18" width="76" height="26" rx="3"/>
+              <text class="label" x="426" y="35" text-anchor="middle">HLR</text>
+              <text class="iface" x="162" y="14" text-anchor="middle">MAP</text>
+              <text class="iface" x="338" y="14" text-anchor="middle">M3UA</text>
+              <circle class="pkt" cx="112" cy="31" r="3"/>
+            </g>
+            <g class="sig-substrate">
+              <line class="sub-tick" x1="44"  y1="46" x2="44"  y2="74"/>
+              <line class="sub-tick" x1="184" y1="46" x2="184" y2="74"/>
+              <line class="sub-tick" x1="324" y1="46" x2="324" y2="74"/>
+              <line class="sub-tick" x1="456" y1="46" x2="456" y2="74"/>
+              <rect class="sub-band" x="6" y="74" width="488" height="40" rx="3"/>
+              <text class="sub-key"  x="20" y="90">RUNS ON</text>
+              <text class="sub-val"  x="20" y="105">Docker &middot; Kubernetes &middot; EKS &middot; AWS</text>
+              <text class="sub-key"  x="300" y="90">INCLUDING A VENDOR 5G CORE</text>
+              <text class="sub-val"  x="300" y="105">SMF &middot; UPF &middot; PCF &middot; UDR</text>
+            </g>
           </svg>
+          <p class="sig-caption"><span class="sig-now">4G user plane</span><button type="button" class="sig-pause" aria-label="Pause the diagram">Pause</button></p>
         </div>
         <div class="hero-cta">
             <a class="btn" href="#contact">Start a conversation</a>
