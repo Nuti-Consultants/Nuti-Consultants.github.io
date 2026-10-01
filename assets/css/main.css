@@ -260,9 +260,10 @@ a:hover { color:var(--accent-hover); }
   border-bottom:1px solid var(--border);
 }
 .toolset ul { list-style:none; margin:0; padding:0; }
-.toolset li { margin-bottom:0.85rem; }
+.toolset li { margin-bottom:1.15rem; }
 .toolset .t-name {
-  display:block; font-family:var(--font-ui); font-size:0.9375rem;
+  display:block; margin-bottom:0.25rem;
+  font-family:var(--font-ui); font-size:0.9375rem;
   font-weight:600; color:var(--text); letter-spacing:-0.005em;
 }
 .toolset .t-what { display:block; font-size:0.9rem; color:var(--text-faint); line-height:1.5; }
