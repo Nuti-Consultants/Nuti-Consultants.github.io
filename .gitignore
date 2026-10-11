@@ -1,2 +1,7 @@
 *.pre-redesign-backup
 *.html5up-backup
+
+# Exported AI conversation transcripts. These are working notes, not site
+# content, and they quote partner names, internal hostnames and credentials.
+# This repo is a public website - never let them near a commit.
+artifacts/
